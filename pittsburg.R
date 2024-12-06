@@ -1,53 +1,67 @@
 #Librerias 
 library(tidyverse)
-library(readr)
+library(gsheet)
 
-#carga de datos
-pittsburg <- read_csv("data/pittsburg.csv")
+pittsburg <- gsheet2tbl('docs.google.com/spreadsheets/d/1uwcQvyIvxhIO0tNeykoPK8f1p7v7b9DIlUNf-1kozYc')
 
 
-#zona de cosas que si funcionan pero aun no se implementan 
-hms(pittsburg[14,6])
-shell()
-abs(as.integer(pittsburg[14,6] - pittsburg[14,8])/3600) #en caso de que haya que hacer restas de horas dormidas
+tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i", "5j","6","7","8","9" )
+proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
 
-#base para los condicionales para convertir a puntajes
-if (pittsburg[10,10] == "Ninguna vez en el último mes") {
-    print(0)
-} else if  (pittsburg[10,10] == "Menos de una vez a la semana") {
-    print(1)
-}else if  (pittsburg[10,10] == "Una o dos veces a la semana") {
-    print(2)
-}else if  (pittsburg[10,10] == "Tres o más veces a la semana") {
-    print(3)
-} else {
-    print("Valor no reconocido")
+
+#id
+for (p in 1:nrow(pittsburg)) {
+    proc_fct[p,1] <- pittsburg[p,2]
 }
 
-
-
-#resultados (?)
-tbl_colnames <- c("holi","uwu", "pao", "mermelada")
-res <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
-
-#se puebla la tabla res generada
+#sexo
 for (p in 1:nrow(pittsburg)) {
-    res[p,2] <- pittsburg[p,10]
+    proc_fct[p,2] <- pittsburg[p,3]
 }
 
-
-#Se hacen las conversiones de putnaje 
+#edad
 for (p in 1:nrow(pittsburg)) {
-    if (pittsburg[p,10] == "Ninguna vez en el último mes") {
-        t[p] <- 0
-    } else if  (pittsburg[p,10] == "Menos de una vez a la semana") {
-        t[p] <- 1
-    }else if  (pittsburg[p,10] == "Una o dos veces a la semana") {
-        t[p] <- 2
-    }else if  (pittsburg[p,10] == "Tres o más veces a la semana") {
-        t[p] <- 3
-    } else {
-        t[p] <- 9
+    proc_fct[p,3] <- pittsburg[p,4]
+}
+
+# 1.
+for (p in 1:nrow(pittsburg)) {
+    proc_fct[p,4] <- pittsburg[p,6]
+}
+
+# 2.
+for (p in 1:nrow(pittsburg)) {
+    proc_fct[p,5] <- pittsburg[p,7]
+}
+
+#hay que corregir unas cosas 3.
+for (p in 1:nrow(pittsburg)) {
+    proc_fct[p,6] <- pittsburg[p,8]
+}
+
+#hay que corregir unas cosas 4.
+for (p in 1:nrow(pittsburg)) {
+    proc_fct[p,7] <- pittsburg[p,9]
+}
+
+#5a-5j
+orig <- 10:18
+dest <- 8:16
+for (p in 1:nrow(pittsburg)) {
+    for (o in orig) {
+        for (r in dest){
+            if (pittsburg[p,o] == "Ninguna vez en el último mes") {
+                proc_fct[p,r] <- 0
+            } else if  (pittsburg[p,o] == "Menos de una vez a la semana") {
+                proc_fct[p,r] <- 1
+            }else if  (pittsburg[p,o] == "Una o dos veces a la semana") {
+                proc_fct[p,r] <- 2
+            }else if  (pittsburg[p,o] == "Tres o más veces a la semana") {
+                proc_fct[p,r] <- 3
+            } else {
+                proc_fct[p,r] <- 9
+            }
+        }
     }
 }
-
+    rm(p,o,r)
