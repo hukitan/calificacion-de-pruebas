@@ -81,21 +81,7 @@ for (p in 1:nrow(proc_fct)) {
 }
 rm(p)
 
-for (p in 1:nrow(pittsburg)) {
-    if (pittsburg[p,21] == "Ninguna vez en el último mes") {
-        proc_fct[p,19] <- 0
-    } else if  (pittsburg[p,21] == "Menos de una vez a la semana") {
-        proc_fct[p,19] <- 1
-    }else if  (pittsburg[p,21] == "Una o dos veces a la semana") {
-        proc_fct[p,19] <- 2
-    }else if  (pittsburg[p,21] == "Tres o más veces a la semana") {
-        proc_fct[p,19] <- 3
-    } else {
-        proc_fct[p,19] <- 9
-    }
-    rm(p)
-}
-
+# 6-7
 orig <- 21:22
 for (p in 1:nrow(pittsburg)) {
     for (o in orig) {
@@ -114,3 +100,19 @@ for (p in 1:nrow(pittsburg)) {
     }
 }
 rm(p,o,r,orig)
+
+#8
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,23] == "Ningún problema") {
+        proc_fct[p,21] <- 0
+    } else if  (pittsburg[p,23] == "Un problema muy ligero") {
+        proc_fct[p,21] <- 1
+    }else if  (pittsburg[p,23] == "Algo de problema") {
+        proc_fct[p,21] <- 2
+    }else if  (pittsburg[p,23] == "Un gran problema") {
+        proc_fct[p,21] <- 3
+    } else {
+        proc_fct[p,21] <- 999
+    }
+    rm(p)
+}
