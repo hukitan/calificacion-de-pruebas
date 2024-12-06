@@ -64,4 +64,4 @@ for (p in 1:nrow(pittsburg)) {
         }
     }
 }
-    rm(p,o,r)
+    rm(p,o,r,orig,dest)
