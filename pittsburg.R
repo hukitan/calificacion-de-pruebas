@@ -1,8 +1,7 @@
 #Librerias 
 library(tidyverse)
-library(gsheet)
 
-pittsburg <- gsheet2tbl('docs.google.com/spreadsheets/d/1uwcQvyIvxhIO0tNeykoPK8f1p7v7b9DIlUNf-1kozYc')
+source('get_Data.R', chdir = TRUE)
 
 
 tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i", "5j","6","7","8","9" )
