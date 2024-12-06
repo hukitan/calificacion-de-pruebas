@@ -7,7 +7,7 @@ pittsburg <- gsheet2tbl('docs.google.com/spreadsheets/d/1uwcQvyIvxhIO0tNeykoPK8f
 
 tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i", "5j","6","7","8","9" )
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
-
+rm(tbl_colnames)
 
 #id
 for (p in 1:nrow(pittsburg)) {
