@@ -57,7 +57,7 @@ for (p in 1:nrow(pittsburg)) {
         }else if  (pittsburg[p,o] == "Tres o más veces a la semana") {
             proc_fct[p,r] <- 3
         } else {
-            proc_fct[p,r] <- 9
+            proc_fct[p,r] <- 999
         }
     }
 }
