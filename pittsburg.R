@@ -43,23 +43,21 @@ for (p in 1:nrow(pittsburg)) {
     proc_fct[p,7] <- pittsburg[p,9]
 }
 
-#5a-5j
+#5a-5j 
 orig <- 10:18
-dest <- 8:16
 for (p in 1:nrow(pittsburg)) {
     for (o in orig) {
-        for (r in dest){
-            if (pittsburg[p,o] == "Ninguna vez en el último mes") {
-                proc_fct[p,r] <- 0
-            } else if  (pittsburg[p,o] == "Menos de una vez a la semana") {
-                proc_fct[p,r] <- 1
-            }else if  (pittsburg[p,o] == "Una o dos veces a la semana") {
-                proc_fct[p,r] <- 2
-            }else if  (pittsburg[p,o] == "Tres o más veces a la semana") {
-                proc_fct[p,r] <- 3
-            } else {
-                proc_fct[p,r] <- 9
-            }
+        r <- o-2
+        if (pittsburg[p,o] == "Ninguna vez en el último mes") {
+            proc_fct[p,r] <- 0
+        } else if  (pittsburg[p,o] == "Menos de una vez a la semana") {
+            proc_fct[p,r] <- 1
+        }else if  (pittsburg[p,o] == "Una o dos veces a la semana") {
+            proc_fct[p,r] <- 2
+        }else if  (pittsburg[p,o] == "Tres o más veces a la semana") {
+            proc_fct[p,r] <- 3
+        } else {
+            proc_fct[p,r] <- 9
         }
     }
 }
