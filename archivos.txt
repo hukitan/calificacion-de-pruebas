@@ -11,5 +11,3 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT-sCGx2k0ITFV-y3FP01wSS-cKuiw-N
 curl 'https://doc-14-70-sheets.googleusercontent.com/export/54bogvaave6cua4cdnls17ksc4/48pvil2a57mn7tt7jrfaqvvbfs/1733190595000/108257166448860622155/*/1uwcQvyIvxhIO0tNeykoPK8f1p7v7b9DIlUNf-1kozYc?exportFormat=csv'
 
 https://docs.google.com/spreadsheets/d/1uwcQvyIvxhIO0tNeykoPK8f1p7v7b9DIlUNf-1kozYc/edit?usp=sharing
-
-https://docs.google.com/spreadsheets/d/1uwcQvyIvxhIO0tNeykoPK8f1p7v7b9DIlUNf-1kozYc/export?exportFormat=csv
