@@ -4,7 +4,7 @@ library(tidyverse)
 source('get_Data.R', chdir = TRUE)
 
 
-tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","p_sum","6","7","8","sum" )
+tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","c5","7_c6","8","9","c7" )
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
 rm(tbl_colnames)
 
@@ -116,3 +116,18 @@ for (p in 1:nrow(pittsburg)) {
     }
     rm(p)
 }
+
+for (p in 1:nrow(pittsburg)) {
+    sum<- proc_fct[p,21] + proc_fct[p,20]
+    if (sum == 0 ) {
+        proc_fct[p,22] <- 0
+    }else if (sum <= 2) {
+        proc_fct[p,22] <- 1
+    }else if (sum <= 4) {
+        proc_fct[p,22] <- 2
+    }else if (sum <= 6) {
+        proc_fct[p,22] <- 3
+    }
+    rm(sum)
+}
+rm(p)
