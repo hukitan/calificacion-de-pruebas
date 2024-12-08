@@ -179,8 +179,25 @@ for (p in 1:nrow(pittsburg)) {
 }
 rm(p)
 
-#componente 3
+#componente 3 & 4
+##c3
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,9] <5) {
+        proc_fct[p,25] <- 3
+    } else if  (pittsburg[p,9] <= 6) {
+        proc_fct[p,25] <- 2
+    }else if  (pittsburg[p,9] <= 7) {
+        proc_fct[p,25] <- 1
+    }else if  (pittsburg[p,9] > 7 ) {
+        proc_fct[p,25] <- 0
+    } else {
+        proc_fct[p,] <- 999
+    }
+    rm(p)
+}
 
+
+#hroas en cama
 for (p in 1:nrow(pittsburg)) {
     if (pittsburg[p,6] > hms("16:00:00")) {
         print(abs(as.integer((pittsburg[p,6] - ddays(1)) - pittsburg[p,8])/3600))
