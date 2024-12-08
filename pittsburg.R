@@ -4,7 +4,7 @@ library(tidyverse)
 source('get_Data.R', chdir = TRUE)
 
 
-tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","c5","7_c6","8","9","c7","6_c1","c2","c3","c4","sumatoria_total")
+tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","c5","7_c6","8","9","c7","6_c1", "c2","c3","c4","sumatoria_total")
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
 rm(tbl_colnames)
 
@@ -30,7 +30,18 @@ for (p in 1:nrow(pittsburg)) {
 
 # 2.
 for (p in 1:nrow(pittsburg)) {
-    proc_fct[p,5] <- pittsburg[p,7]
+    if (pittsburg[p,7] <= 15) {
+        proc_fct[p,5] <- 0
+    } else if  (pittsburg[p,7] <= 30) {
+        proc_fct[p,5] <- 1 
+    }else if  (pittsburg[p,7] <= 60) {
+        proc_fct[p,5] <- 2
+    }else if  (pittsburg[p,7] > 60) {
+        proc_fct[p,5] <- 3
+    } else {
+        proc_fct[p,5] <- 999
+    }
+    rm(p)
 }
 
 #3. hay que verificar que los datos si sean almacenados bien
@@ -154,16 +165,30 @@ for (p in 1:nrow(pittsburg)) {
 
 #componente 2
 for (p in 1:nrow(pittsburg)) {
-    if (pittsburg[p,7] <= 15) {
+    sum<- proc_fct[p,5] + proc_fct[p,8]
+    if (sum == 0 ) {
         proc_fct[p,24] <- 0
-    } else if  (pittsburg[p,7] <= 30) {
-        proc_fct[p,24] <- 1 
-    }else if  (pittsburg[p,7] <= 60) {
+    }else if (sum <= 2) {
+        proc_fct[p,24] <- 1
+    }else if (sum <= 4) {
         proc_fct[p,24] <- 2
-    }else if  (pittsburg[p,7] > 60) {
+    }else if (sum <= 6) {
         proc_fct[p,24] <- 3
-    } else {
-        proc_fct[p,24] <- 999
     }
-    rm(p)
+    rm(sum)
 }
+rm(p)
+
+#componente 3
+
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,6] > hms("16:00:00")) {
+        print(abs(as.integer((pittsburg[p,6] - ddays(1)) - pittsburg[p,8])/3600))
+    } else {
+        print(abs(as.integer(pittsburg[p,6] - pittsburg[p,8])/3600))
+    }
+    
+}
+rm(p)
+
+
