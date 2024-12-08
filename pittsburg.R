@@ -4,7 +4,7 @@ library(tidyverse)
 source('get_Data.R', chdir = TRUE)
 
 
-tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","c5","7_c6","8","9","c7" )
+tbl_colnames <- c("id","sexo", "edad", "1","2","3","4", "5a", "5b","5c","5d","5e", "5f","5g","5h","5i","Sum_aj","c5","7_c6","8","9","c7","6_c1","c2","c3","c4","sumatoria_total")
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
 rm(tbl_colnames)
 
@@ -81,7 +81,8 @@ for (p in 1:nrow(proc_fct)) {
 }
 rm(p)
 
-# 6-7
+
+# 7-8
 orig <- 21:22
 for (p in 1:nrow(pittsburg)) {
     for (o in orig) {
@@ -101,12 +102,12 @@ for (p in 1:nrow(pittsburg)) {
 }
 rm(p,o,r,orig)
 
-#8
+#9
 for (p in 1:nrow(pittsburg)) {
     if (pittsburg[p,23] == "Ningún problema") {
         proc_fct[p,21] <- 0
     } else if  (pittsburg[p,23] == "Un problema muy ligero") {
-        proc_fct[p,21] <- 1
+        proc_fct[p,21] <- 1 
     }else if  (pittsburg[p,23] == "Algo de problema") {
         proc_fct[p,21] <- 2
     }else if  (pittsburg[p,23] == "Un gran problema") {
@@ -117,6 +118,7 @@ for (p in 1:nrow(pittsburg)) {
     rm(p)
 }
 
+#componente 7
 for (p in 1:nrow(pittsburg)) {
     sum<- proc_fct[p,21] + proc_fct[p,20]
     if (sum == 0 ) {
@@ -131,3 +133,21 @@ for (p in 1:nrow(pittsburg)) {
     rm(sum)
 }
 rm(p)
+
+
+#se hacen las calificaciones de los componentes restantes 
+## componente 1
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,20] == "Bastante buena") {
+        proc_fct[p,23] <- 0
+    } else if  (pittsburg[p,20] == "Buena") {
+        proc_fct[p,23] <- 1 
+    }else if  (pittsburg[p,20] == "Mala") {
+        proc_fct[p,23] <- 2
+    }else if  (pittsburg[p,20] == "Bastante mala") {
+        proc_fct[p,23] <- 3
+    } else {
+        proc_fct[p,23] <- 999
+    }
+    rm(p)
+}
