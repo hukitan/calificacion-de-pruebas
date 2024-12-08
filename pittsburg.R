@@ -151,3 +151,19 @@ for (p in 1:nrow(pittsburg)) {
     }
     rm(p)
 }
+
+#componente 2
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,7] <= 15) {
+        proc_fct[p,24] <- 0
+    } else if  (pittsburg[p,7] <= 30) {
+        proc_fct[p,24] <- 1 
+    }else if  (pittsburg[p,7] <= 60) {
+        proc_fct[p,24] <- 2
+    }else if  (pittsburg[p,7] > 60) {
+        proc_fct[p,24] <- 3
+    } else {
+        proc_fct[p,24] <- 999
+    }
+    rm(p)
+}
