@@ -225,3 +225,4 @@ for (p in 1:nrow(pittsburg)) {
     proc_fct[p, 27] <- sum(proc_fct[p, 22:26], proc_fct[p, 7], proc_fct[p, 18:19])
     rm(p)
 }
+
