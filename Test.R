@@ -62,3 +62,15 @@ populate <- function(data,col_o,col_d) {
         proc_fct[p,col_d] <- data[p,col_o]
     }
 }
+
+
+#hroas en cama
+for (p in 1:nrow(pittsburg)) {
+    if (pittsburg[p,6] > hms("16:00:00")) {
+        print(abs(as.integer((pittsburg[p,6] - ddays(1)) - pittsburg[p,8])/3600))
+    } else {
+        print(abs(as.integer(pittsburg[p,6] - pittsburg[p,8])/3600))
+    }
+    
+}
+rm(p)

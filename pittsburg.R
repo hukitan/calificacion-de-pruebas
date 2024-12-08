@@ -196,16 +196,29 @@ for (p in 1:nrow(pittsburg)) {
     rm(p)
 }
 
-
-#hroas en cama
+##c4
+##hroas en cama
 for (p in 1:nrow(pittsburg)) {
     if (pittsburg[p,6] > hms("16:00:00")) {
-        print(abs(as.integer((pittsburg[p,6] - ddays(1)) - pittsburg[p,8])/3600))
+        hr_cm <- abs(as.integer((pittsburg[p,6] - ddays(1)) - pittsburg[p,8])/3600)
     } else {
-        print(abs(as.integer(pittsburg[p,6] - pittsburg[p,8])/3600))
+        hr_cm <- abs(as.integer(pittsburg[p,6] - pittsburg[p,8])/3600)
     }
+    efi <- (proc_fct[p,7]/hr_cm)*100
     
+    if (efi >= 85) {
+        proc_fct[p,26] <- 0
+    } else if  (efi >= 75 ) {
+        proc_fct[p,26] <- 1
+    }else if  (efi >= 65) {
+        proc_fct[p,26] <- 2
+    }else if  (efi < 65 ) {
+        proc_fct[p,26] <- 3
+    } else {
+        proc_fct[p,26] <- 999
+    }
+    rm(p,hr_cm,efi)
 }
-rm(p)
+
 
 
