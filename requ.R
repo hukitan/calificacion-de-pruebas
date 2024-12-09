@@ -1,2 +1,3 @@
 install.packages("rlang", "tidyverse", "languageserver")
-sudo apt-get install libcurl4-openssl-dev
+
+# sudo apt-get install libcurl4-openssl-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libxml2-dev  -y
