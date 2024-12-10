@@ -16,8 +16,8 @@ wb <- createWorkbook("huki")
 addWorksheet(wb, "Resultados")
 addWorksheet(wb, "Cuestionario")
 
-setColWidths(wb, "Cuestionario", cols = 1:5, widths = "auto")
-writeData(wb, "Cuestionario", pittsburg,
+setColWidths(wb, "Cuestionario", cols = 1:4, widths = "auto")
+writeData(wb, "Cuestionario", pittsburg[-5],
     borders = "surrounding",
     headerStyle = hs1, startRow = 1
 )
