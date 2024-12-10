@@ -26,9 +26,17 @@ writeData(wb, "Cuestionario", pittsburg,
 setColWidths(wb, "Resultados", cols = 1:nrow(proc_fct), widths = "auto")
 writeData(wb, "Resultados", proc_fct, borders = "surrounding", headerStyle = hs1, startRow = 1)
 
-
-saveWorkbook(wb, "xlsx/Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
-
+saveWorkbook(wb, "Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
 rm(hs1, wb)
 
-shell("xlsx\\Pittsburg.xlsx")
+switch(Sys.info()[["sysname"]],
+    Windows = {
+        shell("Pittsburg.xlsx")
+    },
+    Linux = {
+        system2(command = "open Pittsburg.xlsx")
+    },
+    Darwin = {
+        system2(command = "open Pittsburg.xlsx")
+    }
+)
