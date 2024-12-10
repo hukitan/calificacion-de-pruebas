@@ -30,13 +30,13 @@ writeData(wb, "Resultados", proc_fct, borders = "surrounding", headerStyle = hs1
 
 switch(Sys.info()[["sysname"]],
     Windows = {
-    saveWorkbook(wb, "xlsx/Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
-    shell("xlsx\\Pittsburg.xlsx")
+    saveWorkbook(wb, "Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
+    shell("Pittsburg.xlsx")
     },
     Linux = {
     system2(command = "mkdir", args = "xlsx/")
-    saveWorkbook(wb, "xlsx/Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
-    system2(command = "open", args = "xlsx/Pittsburg.xlsx")
+    saveWorkbook(wb, "Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
+    system2(command = "open", args = "Pittsburg.xlsx")
     },
     Darwin = {
         print("I'm a Mac.")
