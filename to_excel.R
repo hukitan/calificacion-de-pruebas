@@ -6,11 +6,11 @@ if (require(openxlsx)) {
 }
 
 hs1 <- createStyle(
-    fgFill = "#B607E2", halign = "CENTER",
+    fgFill = "#cc71e2", halign = "CENTER",
     textDecoration = "bold", border = "Bottom"
 )
 
-wb <- createWorkbook("huki")
+wb <- createWorkbook("Alastor")
 
 # creamos las hojas
 addWorksheet(wb, "Resultados")
@@ -34,7 +34,6 @@ switch(Sys.info()[["sysname"]],
     shell("Pittsburg.xlsx")
     },
     Linux = {
-    system2(command = "mkdir", args = "xlsx/")
     saveWorkbook(wb, "Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
     system2(command = "open", args = "Pittsburg.xlsx")
     },
