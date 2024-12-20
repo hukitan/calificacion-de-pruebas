@@ -6,27 +6,27 @@ source("get_Data.R", chdir = TRUE)
 
 tbl_colnames <- c("id", "sexo", "edad", "1", "2", "3", "4", "5a", "5b", "5c", "5d", "5e", "5f", "5g", "5h", "5i", "Sum_aj", "c5", "7_c6", "8", "9", "c7", "6_c1", "c2", "c3", "c4", "sumatoria_total")
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # hace una tible vacia con nombres en tbl_colnames y la nombra res
-rm(tbl_colnames)
 
-# id
+
+# Lista de asignaciones
+asignaciones <- list(
+    c(1, 2), # id
+    c(2, 3), # sexo
+    c(3, 4), # edad
+    c(4, 6), # 1
+    c(6, 8), # 6
+    c(7, 9) # 7
+)
+
+# Asignar valores en un solo bucle
 for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 1] <- pittsburg[p, 2]
+    for (asignacion in asignaciones) {
+        proc_fct[p, asignacion[1]] <- pittsburg[p, asignacion[2]]
+    }
 }
 
-# sexo
-for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 2] <- pittsburg[p, 3]
-}
-
-# edad
-for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 3] <- pittsburg[p, 4]
-}
-
-# 1.
-for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 4] <- pittsburg[p, 6]
-}
+# Eliminar variables temporales
+rm(tbl_colnames, asignaciones)
 
 # 2.
 for (p in 1:nrow(pittsburg)) {
@@ -42,16 +42,6 @@ for (p in 1:nrow(pittsburg)) {
         proc_fct[p, 5] <- 999
     }
     rm(p)
-}
-
-# 3. hay que verificar que los datos si sean almacenados bien
-for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 6] <- pittsburg[p, 8]
-}
-
-# 4.
-for (p in 1:nrow(pittsburg)) {
-    proc_fct[p, 7] <- pittsburg[p, 9]
 }
 
 # 5a-5j
