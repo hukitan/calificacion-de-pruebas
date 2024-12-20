@@ -135,4 +135,4 @@ for (p in 1:nrow(pittsburg)) {
 # Eliminar variables temporales
 rm(tbl_colnames, asignaciones, sum, hr_cm, efi, asignacion, p, o, r)
 
-source("to_excel.R")
+source("to_excel.R", chdir = TRUE)
