@@ -3,8 +3,12 @@ library(tidyverse)
 
 source("get_Data.R", chdir = TRUE)
 
-tbl_colnames <- c("id", "sexo", "edad", "1", "2", "3", "4", "5a", "5b", "5c", "5d", "5e", "5f", "5g", "5h", "5i", "Sum_aj", "c5", "7_c6", "8", "9", "c7", "6_c1", "c2", "c3", "c4", "sumatoria_total")
-proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical())) # * hace una tibble vacia con nombres en tbl_colnames y la nombra proc_fct
+tbl_colnames <- c("id", "sexo", "edad", "1", "2", "3", "4", "5a", "5b",
+                  "5c", "5d", "5e", "5f", "5g", "5h", "5i", "Sum_aj", "c5",
+                  "7_c6", "8","9", "c7", "6_c1", "c2", "c3",
+                  "c4", "sumatoria_total")
+proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical()))
+# * hace una tibble vacia con nombres en tbl_colnames y la nombra proc_fct
 
 # Lista de asignaciones
 asignaciones <- list(
@@ -17,7 +21,7 @@ asignaciones <- list(
 )
 
 # Asignar valores y realizar transformaciones en un solo bucle
-for (p in 1:nrow(pittsburg)) {
+for (p in seq_len(nrow(pittsburg))) {
   for (asignacion in asignaciones) {
     proc_fct[p, asignacion[1]] <- pittsburg[p, asignacion[2]]
   }
