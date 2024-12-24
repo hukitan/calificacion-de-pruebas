@@ -33,5 +33,12 @@
 	],
 	"optionalPaths": [
 		".github/*"
-	]
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"REditorSupport.r"
+			]
+		}
+	}
 }
