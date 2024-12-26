@@ -1,4 +1,4 @@
-# Librerias
+# Librería
 library(tidyverse)
 
 source("get_Data.R", chdir = TRUE)
@@ -8,7 +8,7 @@ tbl_colnames <- c("id", "sexo", "edad", "1", "2", "3", "4", "5a", "5b",
                   "7_c6", "8","9", "c7", "6_c1", "c2", "c3",
                   "c4", "sumatoria_total")
 proc_fct <- tbl_colnames %>% purrr::map_dfc(setNames, object = list(logical()))
-# * hace una tibble vacia con nombres en tbl_colnames y la nombra proc_fct
+# * hace una tibble vacía con nombres en tbl_colnames y la nombra proc_fct
 
 # Lista de asignaciones
 asignaciones <- list(
