@@ -3,5 +3,8 @@
         "pittsburg",
         "puntaje",
         "purrr"
-    ]
+    ],
+    "cSpell.enabledFileTypes": {
+        "r": false
+    }
 }
