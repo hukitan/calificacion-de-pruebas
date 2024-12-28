@@ -32,4 +32,4 @@ switch(Sys.info()[["sysname"]],
 )
 
 # Eliminar variables temporales
-rm(hs1, wb)
+rm(hs1, wb, escribir_datos)
