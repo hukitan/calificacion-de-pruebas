@@ -20,7 +20,7 @@ escribir_datos <- function(hoja, datos, cols) {
 }
 
 # Escribir datos en las hojas
-escribir_datos("Resultados", proc_fct, 1:nrow(proc_fct))
+escribir_datos("Resultados", proc_fct, 1:nrow(proc_fct)) # nolint: seq_linter.
 escribir_datos("Cuestionario", pittsburg[-5], 1:4)
 
 # Guardar y abrir el libro de trabajo según el sistema operativo
