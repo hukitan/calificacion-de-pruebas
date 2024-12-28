@@ -16,6 +16,7 @@ asignaciones <- list(
   c(2, 3), # sexo
   c(3, 4), # edad
   c(4, 6), # 1
+  c(5, 7), # 2
   c(6, 8), # 6
   c(7, 9)  # 7
 )
