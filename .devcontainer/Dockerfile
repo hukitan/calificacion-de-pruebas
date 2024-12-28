@@ -18,11 +18,20 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends libcurl4-openssl-dev \
+    && apt-get -y install --no-install-recommends \
+    libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
     python3-pip \
-    libxt6
+    libxt6 \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    fonts-cascadia-code
 
 RUN python3 -m pip install setuptools
 RUN python3 -m pip install radian
