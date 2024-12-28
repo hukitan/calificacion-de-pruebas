@@ -136,7 +136,7 @@ for (p in seq_len(nrow(pittsburg))) {
   proc_fct[p, 27] <- sum(proc_fct[p, 22:26], proc_fct[p, 7], proc_fct[p, 18:19])
 }
 
-#  Eliminar variables temporales
+# Eliminar variables temporales
 rm(tbl_colnames, asignaciones, sum, hr_cm, efi, asignacion, p, o, r)
 
 source("to_excel.R", chdir = TRUE)
