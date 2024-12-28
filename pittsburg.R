@@ -16,7 +16,6 @@ asignaciones <- list(
   c(2, 3), # sexo
   c(3, 4), # edad
   c(4, 6), # 1
-  c(5, 7), # 2
   c(6, 8), # 6
   c(7, 9)  # 7
 )
@@ -83,6 +82,13 @@ for (p in seq_len(nrow(pittsburg))) {
   )
   
   # Componente 2
+  proc_fct[p, 5] <- case_when(
+    pittsburg[p, 7] < 15 ~ 0,
+    pittsburg[p, 7] <= 30 ~ 1,
+    pittsburg[p, 7] <= 60 ~ 2,
+    pittsburg[p, 7] > 60 ~ 3,
+    TRUE ~ 999
+  )
   sum <- proc_fct[p, 5] + proc_fct[p, 8]
   proc_fct[p, 24] <- case_when(
     sum == 0 ~ 0,
