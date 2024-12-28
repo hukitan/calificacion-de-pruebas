@@ -26,18 +26,11 @@ for (p in seq_len(nrow(pittsburg))) {
     proc_fct[p, asignacion[1]] <- pittsburg[p, asignacion[2]]
   }
   
-  # Asignación condicional para la columna 5
-  proc_fct[p, 5] <- case_when(
-    pittsburg[p, 7] <= 15 ~ 0,
-    pittsburg[p, 7] <= 30 ~ 1,
-    pittsburg[p, 7] <= 60 ~ 2,
-    pittsburg[p, 7] > 60 ~ 3,
-    TRUE ~ 999
-  )
+
   
-  # Asignación condicional para las columnas 5a-5j
+  # Asignación condicional para las columnas 5a-5j y 7-8
   proc_fct[p, 17] <- 0
-  for (o in 10:18) {
+  for (o in c(10:18, 21:22)) {
     r <- o - 2
     proc_fct[p, r] <- case_when(
       pittsburg[p, o] == "Ninguna vez en el último mes" ~ 0,
@@ -46,7 +39,9 @@ for (p in seq_len(nrow(pittsburg))) {
       pittsburg[p, o] == "Tres o más veces a la semana" ~ 3,
       TRUE ~ 999
     )
-    proc_fct[p, 17] <- proc_fct[p, 17] + proc_fct[p, r]
+    if (o <= 18) {
+      proc_fct[p, 17] <- proc_fct[p, 17] + proc_fct[p, r]
+    }
   }
   
   # Calculo del puntaje de 5
@@ -57,18 +52,6 @@ for (p in seq_len(nrow(pittsburg))) {
     proc_fct[p, 17] <= 27 ~ 3,
     TRUE ~ 999
   )
-  
-  # Asignación condicional para las columnas 7-8
-  for (o in 21:22) {
-    r <- o - 2
-    proc_fct[p, r] <- case_when(
-      pittsburg[p, o] == "Ninguna vez en el último mes" ~ 0,
-      pittsburg[p, o] == "Menos de una vez a la semana" ~ 1,
-      pittsburg[p, o] == "Una o dos veces a la semana" ~ 2,
-      pittsburg[p, o] == "Tres o más veces a la semana" ~ 3,
-      TRUE ~ 999
-    )
-  }
   
   # Asignación condicional para la columna 9
   proc_fct[p, 21] <- case_when(
