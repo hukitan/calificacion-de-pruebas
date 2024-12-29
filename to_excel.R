@@ -28,7 +28,7 @@ saveWorkbook(wb, "Pittsburg.xlsx", overwrite = TRUE, returnValue = FALSE)
 switch(Sys.info()[["sysname"]],
     Windows = shell("Pittsburg.xlsx"),
     Linux = print("Archivo generado"),
-    #Se cambia por print para que no se abra el archivo en caso de Linux (pensando en un docker)
+    # Se cambia por print para que no se abra el archivo en caso de Linux (pensando en un docker)
     Darwin = system2(command = "open", args = "Pittsburg.xlsx")
 )
 
