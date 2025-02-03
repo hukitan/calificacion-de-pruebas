@@ -1,6 +1,4 @@
-if (require(gsheet)) {
-    library(gsheet)
-} else {
+while (!require(gsheet)) {
     install.packages("gsheet", dep = TRUE)
     library(gsheet)
 }
