@@ -197,7 +197,7 @@ for (p in 1:nrow(pittsburg)) {
 }
 
 ## c4
-## hroas en cama y conversion a puntaje
+## horas en cama y conversion a puntaje
 for (p in 1:nrow(pittsburg)) {
     if (pittsburg[p, 6] > hms("16:00:00")) {
         hr_cm <- abs(as.integer((pittsburg[p, 6] - ddays(1)) - pittsburg[p, 8]) / 3600)
@@ -220,7 +220,7 @@ for (p in 1:nrow(pittsburg)) {
     rm(p, hr_cm, efi)
 }
 
-# sumatoriaaaaaaaa de los factores
+# sumatoria de los factores
 for (p in 1:nrow(pittsburg)) {
     proc_fct[p, 27] <- sum(proc_fct[p, 22:26], proc_fct[p, 7], proc_fct[p, 18:19])
     rm(p)
