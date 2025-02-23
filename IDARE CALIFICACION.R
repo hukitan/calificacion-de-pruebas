@@ -51,15 +51,15 @@ estadoA <- cbind(IDARE$`3. Estoy tenso/a`,
                  IDARE$`18. Me siento muy excitado/a y aturdido/a`)
 
 estadoB <- cbind(IDARE$`1. Me siento calmado/a`,
-                IDARE$`2. Me siento seguro/a`,
-                IDARE$`5. Me siento a gusto`,
-                IDARE$`8. Me siento descansado/a`,
-                IDARE$`10. Me siento cómodo/a`,
-                IDARE$`11. Me siento con confianza en mí mismo/a`,
-                IDARE$`15. Me siento relajado/a`,
-                IDARE$`16. Me siento satisfecho/a`,
-                IDARE$`19. Me siento alegre`,
-                IDARE$`20. Me siento bien`)
+                 IDARE$`2. Me siento seguro/a`,
+                 IDARE$`5. Me siento a gusto`,
+                 IDARE$`8. Me siento descansado/a`,
+                 IDARE$`10. Me siento cómodo/a`,
+                 IDARE$`11. Me siento con confianza en mí mismo/a`,
+                 IDARE$`15. Me siento relajado/a`,
+                 IDARE$`16. Me siento satisfecho/a`,
+                 IDARE$`19. Me siento alegre`,
+                 IDARE$`20. Me siento bien`)
 
 rasgoA <- cbind(IDARE$`22. Me canso rápidamente`,
                 IDARE$`23. Siento ganas de llorar`,
@@ -124,7 +124,7 @@ rasgoB_n <- rasgoB %>%
   )))
 
 
-##### SE CALCULAN LOS PUNTUAJES PARA ANSIEDAD RASGO Y ESTADO #####
+##### SE CALCULAN LOS PUNTUAJES PARA RASGO Y ESTADO #####
 
 sumaEA <- rowSums(estadoA_n)
 sumaEB <- rowSums(estadoB_n)
@@ -137,7 +137,7 @@ PtjeR <- (sumaRA-sumaRB)+35
 PtjeE_N <- PtjeE
 PtjeR_N <- PtjeR
 
-##### SE INTERPRETAN LOS PUNTUAJES PARA ANSIEDAD RASGO Y ESTADO #####
+##### SE INTERPRETAN LOS PUNTUAJES PARA RASGO Y ESTADO #####
 
 PtjeE <- as.data.frame(PtjeE)
 PtjeE_N <- PtjeE %>%
